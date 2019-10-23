@@ -1,6 +1,7 @@
 package com.zgy.project.ImportExcel.demo.controller;
 
 import com.zgy.project.ImportExcel.core.utils.ImportType;
+import com.zgy.project.ImportExcel.demo.factory.BusinessType;
 import com.zgy.project.ImportExcel.demo.service.TemplateDownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -22,9 +23,9 @@ public class IndexController {
     }
 
     @RequestMapping(value = "download")
-    public ResponseEntity<Resource> downloadTrainPersonalTemplate(HttpServletRequest request, String importExcelType){
-        // 下载参培人员的导入模板
-        ImportType importType = new ImportType(importExcelType,"train_question_judge_import","判断题导入模板",".xlsx");
-        return templateDownloadService.downloadTrainPersonalTemplate(request, importType);
+    public ResponseEntity<Resource> downloadTemplate(HttpServletRequest request, BusinessType businessType,String templateName){
+        // 下载判断题的导入模板
+        ImportType importType = new ImportType(businessType.name(),templateName);
+        return templateDownloadService.downloadExcelTemplate(request, businessType,importType);
     }
 }

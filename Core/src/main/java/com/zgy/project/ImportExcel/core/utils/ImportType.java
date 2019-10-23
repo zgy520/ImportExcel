@@ -16,6 +16,14 @@ public class ImportType {
         this.fileExtend = fileExtend;
     }
 
+    public ImportType(String businessType,String filePath, String fileName){
+        this(businessType,filePath,fileName,".xlsx");
+    }
+
+    public ImportType(String businessType, String fileName){
+        this(businessType,businessType,fileName,".xlsx");
+    }
+
     public String getFilePath() {
         return filePath;
     }

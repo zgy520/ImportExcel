@@ -1,6 +1,7 @@
 package com.zgy.project.ImportExcel.demo.factory;
 
 
+import com.oracle.nio.BufferSecrets;
 import com.zgy.project.ImportExcel.core.utils.ExcelBase;
 import com.zgy.project.ImportExcel.core.utils.ExcelFileUtils;
 import com.zgy.project.ImportExcel.core.utils.ImportType;
@@ -13,13 +14,13 @@ public class ImportTemplateFactory {
      * @param importType
      * @return
      */
-    public static ExcelBase getExcelImpl(ImportType importType, String templatePath){
+    public static ExcelBase getExcelImpl(BusinessType businessType,ImportType importType, String templatePath){
         if (importType == null)
             return null;
         if (StringUtils.isBlank(templatePath))
             templatePath = ExcelFileUtils.getExcelTemplatePath(importType);
-        switch (importType.getBusinessType()){
-            case "TRAIN_QUESTION_IMPORT_JUDGE":
+        switch (businessType){
+            case JUDGE:
                 return new QJudgeExcelImport(templatePath);
             default:
                 return null;

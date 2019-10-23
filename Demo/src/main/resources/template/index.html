@@ -11,10 +11,12 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js" type="text/javascript"></script>
     <script type="text/javascript">
         function downloadTemplate() {
-            var importType = "TRAIN_QUESTION_IMPORT_JUDGE";
+            var importType = "JUDGE";
+            var templateName = "判断题导入模板测试呵呵呵";
             var exportForm = null;
             exportForm = $("<form action='/demo/download' method='post'></form>");
-            exportForm.append("<input type='hidden' name='importExcelType' value="+ importType +">")
+            exportForm.append("<input type='hidden' name='businessType' value="+ importType +">")
+            exportForm.append("<input type='hidden' name='templateName' value="+ templateName +">")
             $(document.body).append(exportForm);
             exportForm.submit();
             exportForm.remove();
