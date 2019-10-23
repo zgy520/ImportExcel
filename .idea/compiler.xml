@@ -11,9 +11,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Core" target="1.5" />
+      <module name="Core" target="8" />
       <module name="Demo" target="1.8" />
-      <module name="ImportExcel" target="1.5" />
+      <module name="ImportExcel" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

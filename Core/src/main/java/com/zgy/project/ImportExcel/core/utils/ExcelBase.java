@@ -30,17 +30,17 @@ public interface ExcelBase {
     /**
      * 下载模板
      */
-    ResponseEntity<Resource> downloadTemplate(HttpServletRequest request, ImportExcelType importExcelType);
+    ResponseEntity<Resource> downloadTemplate(HttpServletRequest request,ImportType importType);
 
     /**
      *
      * 下载导入过程中错误的数据
      * @param request
-     * @param importExcelType
+     * @param importType
      * @param fileName
      * @return
      */
-    ResponseEntity<Resource> downloadErrorData(HttpServletRequest request, ImportExcelType importExcelType, String fileName);
+    ResponseEntity<Resource> downloadErrorData(HttpServletRequest request, ImportType importType, String fileName);
 
     /**
      * 获取表头中的每列所对应的表中的字段
@@ -84,7 +84,7 @@ public interface ExcelBase {
      * 将验证失败的数据写入excel中
      * 需提供下载的url
      * @param importResult
-     * @param importExcelType
+     * @param importType
      */
-    Path writeErrorDataToExcel(final ImportResult importResult, ImportExcelType importExcelType);
+    Path writeErrorDataToExcel(final ImportResult importResult, ImportType importType);
 }

@@ -6,5 +6,19 @@
 </head>
 <body>
     <h1>Hello， Thmyleaf Server Application!</h1>
+    <button onclick="downloadTemplate()">下载模板</button>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function downloadTemplate() {
+            var importType = "TRAIN_QUESTION_IMPORT_JUDGE";
+            var exportForm = null;
+            exportForm = $("<form action='/demo/download' method='post'></form>");
+            exportForm.append("<input type='hidden' name='importExcelType' value="+ importType +">")
+            $(document.body).append(exportForm);
+            exportForm.submit();
+            exportForm.remove();
+        }
+    </script>
 </body>
 </html>

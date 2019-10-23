@@ -69,9 +69,9 @@ public class ExcelFileUtils {
      * 获取excel的模板路径
      * @return
      */
-    public static String getExcelTemplatePath(ImportExcelType importExcelType){
+    public static String getExcelTemplatePath(ImportType importType){
         String finalTemplatePath = "";
-        Path path = Paths.get(excelTempPath.toString(), importExcelType.getFilePath());
+        Path path = Paths.get(excelTempPath.toString(), importType.getFilePath());
         if (!Files.exists(path)){
             try {
                 Files.createDirectory(path);
@@ -79,19 +79,19 @@ public class ExcelFileUtils {
                 e.printStackTrace();
             }
         }
-        Path finalPath = Paths.get(path.toString(), importExcelType.getFileName() + importExcelType.getFileExtend());
+        Path finalPath = Paths.get(path.toString(), importType.getFileName() + importType.getFileExtend());
         finalTemplatePath = finalPath.normalize().toString();
         return finalTemplatePath;
     }
 
     /**
      * 获取excel错误模板的路径
-     * @param importExcelType
+     * @param importType
      * @return
      */
-    public static String getExcelErrorPath(ImportExcelType importExcelType){
+    public static String getExcelErrorPath(ImportType importType){
         String finalErrorPath = "";
-        Path path = Paths.get(excelTempPath.toString(), importExcelType.getFilePath());
+        Path path = Paths.get(excelTempPath.toString(), importType.getFilePath());
         if (!Files.exists(path)){
             try {
                 Files.createDirectory(path);
@@ -100,7 +100,7 @@ public class ExcelFileUtils {
             }
         }
         Date now = new Date();
-        Path finalPath = Paths.get(path.toString(), now.getTime() + importExcelType.getFileName() + importExcelType.getFileExtend());
+        Path finalPath = Paths.get(path.toString(), now.getTime() + importType.getFileName() + importType.getFileExtend());
         finalErrorPath = finalPath.normalize().toString();
         return finalErrorPath;
     }

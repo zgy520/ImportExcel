@@ -5,10 +5,12 @@ package com.zgy.project.ImportExcel.core.utils;
  * 即指的是哪一个业务的导入
  */
 public class ImportType {
+    final String businessType; // 业务类型
     final String filePath;
     final String fileName;
     final String fileExtend;
-    ImportType(String filePath, String fileName, String fileExtend){
+    public ImportType(String businessType,String filePath, String fileName, String fileExtend){
+        this.businessType = businessType;
         this.filePath = filePath;
         this.fileName = fileName;
         this.fileExtend = fileExtend;
@@ -24,5 +26,9 @@ public class ImportType {
 
     public String getFileExtend() {
         return fileExtend;
+    }
+
+    public String getBusinessType() {
+        return businessType;
     }
 }

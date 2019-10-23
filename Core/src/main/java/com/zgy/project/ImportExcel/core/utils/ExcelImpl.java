@@ -2,7 +2,6 @@ package com.zgy.project.ImportExcel.core.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -159,11 +158,11 @@ public abstract class ExcelImpl implements ExcelBase {
     /**
      * 下载模板
      * @param request
-     * @param importExcelType
+     * @param importType
      * @return
      */
     @Override
-    public ResponseEntity<Resource> downloadTemplate(HttpServletRequest request, ImportExcelType importExcelType) {
+    public ResponseEntity<Resource> downloadTemplate(HttpServletRequest request, ImportType importType) {
         //创建第一行
         if (this.activeSheet == null){
             this.activeSheet = workbook.createSheet();
@@ -177,7 +176,7 @@ public abstract class ExcelImpl implements ExcelBase {
         if (this.getExampleRowData().length > 0){ // 说明有示例数据，则添加
             createExampleData(colLen,this.getExampleRowData());
         }
-        String finalFilePath = ExcelFileUtils.getExcelTemplatePath(importExcelType);
+        String finalFilePath = ExcelFileUtils.getExcelTemplatePath(importType);
 
         if (!Files.exists(Paths.get(finalFilePath))){  // 如果不存在模板，则产生
             try {
@@ -200,13 +199,13 @@ public abstract class ExcelImpl implements ExcelBase {
     /**
      * 下载错误数据
      * @param request
-     * @param importExcelType  下载错误数据的类型
+     * @param importType  下载错误数据的类型
      * @param fileName  要下载的文件名
      * @return
      */
     @Override
-    public ResponseEntity<Resource> downloadErrorData(HttpServletRequest request,ImportExcelType importExcelType,String fileName){
-        Path path = Paths.get(ExcelFileUtils.getExcelTempPath().toString(), importExcelType.getFilePath());
+    public ResponseEntity<Resource> downloadErrorData(HttpServletRequest request,ImportType importType,String fileName){
+        Path path = Paths.get(ExcelFileUtils.getExcelTempPath().toString(), importType.getFilePath());
         LOGGER.info("获取到的目录为:" + path.toString());
         Path finalPath = Paths.get(path.toString(),fileName);
         return ExcelFileUtils.downloadFileByFilePath(finalPath.toString(),request);
@@ -258,7 +257,7 @@ public abstract class ExcelImpl implements ExcelBase {
      * @return
      */
     @Override
-    public Path writeErrorDataToExcel(final ImportResult importResult,ImportExcelType importExcelType) {
+    public Path writeErrorDataToExcel(final ImportResult importResult,ImportType importExcelType) {
         LOGGER.info("开始写入验证失败的数据");
         JSONArray validateArray = importResult.getValidateFailArray(); // 验证失败的数组
         JSONArray saveArray = importResult.getSaveFailArray(); // 保存失败的数组
